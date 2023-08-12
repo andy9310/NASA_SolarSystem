@@ -9,12 +9,6 @@ var MoonURL = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/17271/lroc_color_pol
 var MoonsurfaceURL = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/17271/ldem_3_8bit.jpg"; 
 var galaxyURL = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/17271/hipp8_s.jpg"
 
-
-
-
-
-
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight , 0.1, 1000); 
 const renderer = new THREE.WebGL1Renderer({
