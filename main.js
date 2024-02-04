@@ -2,8 +2,13 @@ import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
+// import {setText} from './src/text.js'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import * as THREE from 'three'
+import textLoaderFunction from './src/text.js'
+
+const loader = new FontLoader();
 
 var MoonURL = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/17271/lroc_color_poles_1k.jpg"; 
 var MoonsurfaceURL = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/17271/ldem_3_8bit.jpg"; 
@@ -24,6 +29,23 @@ const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
 const torus = new THREE.Mesh(geometry, material);
 torus.position.set(20,20,20)
 
+// create words 
+
+loader.load( 'src/text_font/helvetiker_regular.typeface.json', (font)=>{
+  scene.add(textLoaderFunction(font))
+});
+
+// create bulletin
+function bulletin(){
+  const geometry = new THREE.PlaneGeometry( 1, 1 );
+  const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+  const plane = new THREE.Mesh( geometry, material );
+  plane.position.set(10,6,1);
+  scene.add( plane );
+}
+
+
+// create decorator
 scene.add(torus)
 const pointlight = new THREE.PointLight(0xffffff);
 pointlight.position.set(10,5,5)
@@ -91,7 +113,7 @@ Array(200).fill().forEach(addStar);
 floor()
 house_wall()
 animate()
-
+bulletin()
 // document.querySelector('#app').innerHTML = `
 //   <div>
 //     <a href="https://vitejs.dev" target="_blank">
