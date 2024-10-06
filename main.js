@@ -73,6 +73,7 @@ new GLTFLoader().load('./src/models/Soldier.glb', function (gltf) {
     model.traverse(function (object) {
         if (object.isMesh) object.castShadow = true;
     });
+    model.position.set(0, 0, 20);
     scene.add(model);
 
     const gltfAnimations = gltf.animations;
