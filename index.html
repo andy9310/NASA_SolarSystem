@@ -7,7 +7,11 @@
     <title>Vite App</title>
   </head>
   <body>
-    <canvas id = "bg"> </canvas>
+    <canvas id = "bg">
+      <video id="video" style="display:none;" autoplay loop playsinline>
+        <source src="./src/models/intro.mp4" type="video/mp4">
+      </video>
+    </canvas>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
   </body>

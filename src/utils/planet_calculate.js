@@ -1,3 +1,8 @@
+// Get current Julian centuries since J2000.0
+const now = new Date();
+const jd = getJulianDate(now.getTime());
+const T = getJulianCenturies(jd);
+
 // Function to calculate Julian Date
 function getJulianDate(date) {
     return date / 86400000 + 2440587.5;
