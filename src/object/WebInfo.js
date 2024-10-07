@@ -14,7 +14,7 @@ export function Vedio(){
     video.loop = true;
     video.playsInline = true; // For mobile devices
     video.load();
-    video.play();
+    // video.play();
 
     var texture = new THREE.VideoTexture(video);
     texture.minFilter = THREE.LinearFilter;
@@ -24,7 +24,7 @@ export function Vedio(){
     var imageObject = new THREE.Mesh(
         new THREE.PlaneGeometry(50, 50),
         new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide }),);
-    return imageObject
+    return {imageObject, video}
 }
    
 // create bulletin

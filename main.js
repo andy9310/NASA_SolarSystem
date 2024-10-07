@@ -21,6 +21,7 @@ import uranusPic from "./src/models/saturn-map.jpg";
 import saturnPic_ring from "./src/models/saturn-rings.jpg";
 import uranusPic_ring from "./src/models/uranus-rings.jpg";
 import earthPic from "./src/models/earth-map-1.jpg";
+import soldier from "./src/models/Soldier.glb";
 
 // scene setting 
 const scene = new THREE.Scene();
@@ -68,7 +69,7 @@ document.addEventListener('keyup', (event) => {
 
 // MODEL WITH ANIMATIONS
 let CharacterControls = '';
-new GLTFLoader().load('./src/models/Soldier.glb', function (gltf) {
+new GLTFLoader().load(soldier, function (gltf) {
     const model = gltf.scene;
     model.traverse(function (object) {
         if (object.isMesh) object.castShadow = true;
@@ -88,7 +89,7 @@ new GLTFLoader().load('./src/models/Soldier.glb', function (gltf) {
 // adding object
 const floorMesh = Floor();
 const bulletinMesh = Bulletin();
-const videoMesh = Vedio();
+const {imageObject: videoMesh, video} = Vedio();
 // const moon = Moon(); 
 const starfield = new Starfield().getStarfield();
 const sun = new Sun().getSun();
@@ -98,6 +99,28 @@ scene.add(starfield);
 // scene.add(bulletinMesh)
 videoMesh.position.set(0, 30, -40); // Centered in the scene
 scene.add(videoMesh); // Add the mesh to the scene
+
+
+const playButton = document.createElement('button');
+playButton.textContent = 'Play Video';
+document.body.appendChild(playButton);
+
+// Style the play button (optional)
+playButton.style.position = 'absolute';
+playButton.style.top = '10px';
+playButton.style.left = '10px';
+playButton.style.zIndex = '1';
+
+// Add an event listener to the play button
+playButton.addEventListener('click', () => {
+  video.play().then(() => {
+    console.log('Video playback started.');
+    playButton.style.display = 'none'; // Hide the button after playing
+  }).catch((error) => {
+    console.error('Error attempting to play the video:', error);
+  });
+});
+
 // scene.add(moon)
 scene.add(sun)
 
